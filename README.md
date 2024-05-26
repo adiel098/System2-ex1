@@ -1,6 +1,6 @@
-# **Advanced Systems Programming - C++ Graph Project**
+# **Advanced Systems Programming 2 - C++ Graph Project**
 
-This repository hosts the project assignment for the **Advanced Systems Programming** course at Ariel University. The focus of the project is on implementing graph-related classes and algorithms in C++.
+This repository hosts the project assignment for the **Advanced Systems Programming 2** course at Ariel University. The focus of the project is on implementing graph-related classes and algorithms in C++.
 
 ## **Overview**
 
@@ -31,7 +31,7 @@ In this project, we develop a `Graph` class to represent graphs using an adjacen
 - **negativeCycle**: Identifies a negative cycle in the graph, if any.
 - **DFS**: Depth-first search implementation.
 - **BFS**: Breadth-first search implementation.
-- **dijkstra**: Dijkstra's algorithm for finding shortest paths.
+- **Dijkstra**: Dijkstra's algorithm for finding shortest paths.
 
 
 
