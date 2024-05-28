@@ -112,6 +112,7 @@ string Algorithms::isContainsCycle(Graph g)
 
 string Algorithms::negativeCycle( Graph g)
 {
+    stringstream str;
      bool foundNegativeCycle = false;
         for (int i = 0; i < g.get_countVertices(); ++i) 
         {
@@ -123,12 +124,14 @@ string Algorithms::negativeCycle( Graph g)
         }
         if (!foundNegativeCycle) 
         {
-            cout << "No negative cycles found in the graph." << endl;
+            str << "No negative cycles found in the graph." << endl;
         }
         else
         {
-            cout << "There exist a negtive cycle !" << endl;
+            str << "There exist a negtive cycle !" << endl;
         }
+        return str.str();
+
 }
 
 
@@ -199,7 +202,7 @@ vector<int> Algorithms::BFS(Graph g, int source, int destination)
     return {};
 }
 // Depth-First Search (DFS) function for traversing a graph
-int Algorithms::DFS(Vertex& v, std::vector<bool>& visited)
+void Algorithms::DFS(Vertex& v, std::vector<bool>& visited)
 {
     // Mark the current vertex as visited
     visited[v.get_data()] = true;
