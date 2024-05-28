@@ -21,7 +21,7 @@ namespace ariel
             static std::string isContainsCycle( Graph g);
             static std::string isBipartite( Graph g);
             static std::string negativeCycle( Graph g);
-            static int DFS(Vertex& v, std::vector<bool>& visited);
+            static void DFS(Vertex& v, std::vector<bool>& visited);
             static std::vector<int> BFS(Graph g,int source, int destination); 
             static std::vector<int> Dijkstra(Graph g, int source, int destination); 
             static bool isCyclicUtil(Vertex v, std::vector<bool>& visited, std::vector<int>& parent, std::vector<Vertex>& cycle); 
