@@ -86,7 +86,7 @@ string Algorithms::isContainsCycle(Graph g)
      {
             if (!visited[v.get_data()]) 
             {
-                if (isCyclicUtil(v, visited, parent, cycle))
+                if (isCyclic(v, visited, parent, cycle))
                  {
                     // Print the cycle
                     result1 << "The cycle is: ";
@@ -278,7 +278,7 @@ std::vector<int> Algorithms::Dijkstra(Graph g, int source, int destination)
 
 
 
- bool Algorithms::isCyclicUtil(Vertex v, std::vector<bool>& visited, std::vector<int>& parent, std::vector<Vertex>& cycle) 
+ bool Algorithms::isCyclic(Vertex v, std::vector<bool>& visited, std::vector<int>& parent, std::vector<Vertex>& cycle) 
  {
         int v_data = v.get_data();
         visited[v.get_data()] = true; // Mark current vertex as visited
@@ -291,7 +291,7 @@ std::vector<int> Algorithms::Dijkstra(Graph g, int source, int destination)
             if (!visited[vertex_id]) 
             {
                 parent[vertex_id] = v_data;
-                if (isCyclicUtil(e.get_dest(), visited, parent, cycle))
+                if (isCyclic(e.get_dest(), visited, parent, cycle))
                     return true;
             } 
             else if (e.get_dest().get_data() != parent[v.get_data()]) 
