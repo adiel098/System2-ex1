@@ -20,19 +20,7 @@ namespace ariel
 
 std::string Algorithms::isConnected(const Graph g)
  {
-//         const std::vector<std::vector<int>> &matrix = g.get_matrix();
-//         int numVertices = g.get_matrix().size();
 
-//         std::vector<bool> visited(static_cast<std::vector<bool>::size_type>(numVertices), false);
-//         if(matrix.size()==0||matrix.size()==1)
-//             return "1";
-//         // Starts DFS from vertex 0
-
-//         bool flag= dfs(matrix, visited, 0);
-//         if(flag)
-//             return "1";
-//         else
-//             return "0";
     std::vector<bool> visited(g.get_matrix().size(), false);
 
         if(g.get_matrix().size()==0||g.get_matrix().size()==1)
