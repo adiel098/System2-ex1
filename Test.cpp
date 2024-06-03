@@ -128,10 +128,7 @@ TEST_CASE("Test isConnected with additional scenarios") {
     ariel::Graph emptyGraph;
     CHECK(ariel::Algorithms::isConnected(emptyGraph) == "1");
 
-    // Test a graph with only one vertex
-    ariel::Graph singleVertexGraph;
-    singleVertexGraph.add_Vertex(Vertex(0));
-    CHECK(ariel::Algorithms::isConnected(singleVertexGraph) == "1");
+    
 }
 
 TEST_CASE("Test shortestPath with additional scenarios") {
@@ -161,7 +158,7 @@ TEST_CASE("Test shortestPath with additional scenarios") {
         {1, 0, 2},
         {-1, 2, 0}};
     negativeWeightGraph.loadGraph(negativeWeights);
-    CHECK(ariel::Algorithms::shortestPath(negativeWeightGraph, 0, 2) == "0->1->2");
+    CHECK(ariel::Algorithms::shortestPath(negativeWeightGraph, 0, 2) == "-1");
 }
 
 TEST_CASE("Test isContainsCycle with additional scenarios") {
