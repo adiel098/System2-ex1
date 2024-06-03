@@ -54,7 +54,7 @@ std::string Algorithms::shortestPath(const Graph& graph, int source, int destina
             return dijkstra(graph.get_matrix(), source, destination);
         } 
      
-        
+        return "";
 }
  bool Algorithms::isUnweighted(const std::vector<std::vector<int>> &matrix) {
         for (const auto &row : matrix) {
