@@ -204,3 +204,34 @@ TEST_CASE("Test invalid graph with additional scenarios") {
 
     
 }
+TEST_CASE("Negative Cycle") {
+
+ariel::Graph g11;
+    vector<vector<int>> graph11 = {
+
+        {0, 2, 0},
+        {0, 0, 1},
+        {-4, 0, 0}
+       
+    };
+    g11.loadGraph(graph11);
+
+    CHECK(ariel::Algorithms::negativeCycle(g11) == "Negative cycle found.");
+
+    ariel::Graph g9;
+
+    vector<vector<int>> graph9 = {
+        {0, 1, 0, 0, 0},
+        {0, 0, 2, 0, 0},
+        {0, 0, 0, 1, 0},
+        {0, 0, 0, 0, 5},
+        {6, 0, 0, 0, 0}
+
+    };
+    
+    g9.loadGraph(graph9);
+
+
+    CHECK(ariel::Algorithms::negativeCycle(g9) == "No negative cycle found.");
+
+}
