@@ -78,6 +78,10 @@ bool Algorithms::hasNegativeWeights(const std::vector<std::vector<int>> &matrix)
     }
     std::string Algorithms::isContainsCycle( const Graph g) 
     {
+        if(negativeCycle(g)!="No negative cycle found.")
+        {
+            return "0";
+        }
     stringstream str;
     int numNodes = g.get_matrix().size();
     std::vector<bool> visited(numNodes, false);
@@ -122,42 +126,21 @@ bool Algorithms::hasCycleDFS(const std::vector<std::vector<int>>& graph, std::ve
     path.pop_back();
     return false;
 }
-std::string Algorithms::negativeCycle( const Graph& g)
+std::string Algorithms::negativeCycle(const Graph& g)
 {
     // Get the number of vertices in the graph
-        int numVertices = g.get_matrix().size();
+    int numVertices = g.get_matrix().size();
 
-        // Get the adjacency matrix of the graph
-        const auto &matrix = g.get_matrix();
+    // Get the adjacency matrix of the graph
+    const auto& matrix = g.get_matrix();
 
-        // Initialize distance array to store shortest distances from source vertex
-        std::vector<int> distance(numVertices, INT_MAX);
-        distance[0] = 0; // Assuming source vertex is 0
+    // Initialize distance array to store shortest distances from source vertex
+    std::vector<int> distance(numVertices, INT_MAX);
+    distance[0] = 0; // Assuming source vertex is 0
 
-        // Initialize parent array to store parent vertices in the shortest path tree
-        std::vector<int> parent(numVertices, -1);
-
-        // Relax edges repeatedly
-        bool negativeCycleFound = false;
-        for (int i = 0; i < numVertices - 1; ++i)
-        {
-            for (int u = 0; u < numVertices; ++u)
-            {
-                for (int v = 0; v < numVertices; ++v)
-                {
-                    if (matrix[u][v] != 0)
-                    {
-                        if (distance[u] != INT_MAX && distance[u] + matrix[u][v] < distance[v])
-                        {
-                            distance[v] = distance[u] + matrix[u][v];
-                            parent[v] = u;
-                        }
-                    }
-                }
-            }
-        }
-
-        // Check for negative cycles
+    // Relax edges repeatedly
+    for (int i = 0; i < numVertices - 1; ++i)
+    {
         for (int u = 0; u < numVertices; ++u)
         {
             for (int v = 0; v < numVertices; ++v)
@@ -166,37 +149,31 @@ std::string Algorithms::negativeCycle( const Graph& g)
                 {
                     if (distance[u] != INT_MAX && distance[u] + matrix[u][v] < distance[v])
                     {
-                        // Found a negative cycle, construct and return the cycle
-                        std::vector<int> cycle;
-                        int current = v;
-                        while (current != u)
-                        {
-                            if (current == -1)
-                            {
-                                // Cycle detected, but no cycle formed
-                                return "No negative cycle found.";
-                            }
-                            cycle.push_back(current);
-                            current = static_cast<int>(parent[current]);
-                        }
-                        cycle.push_back(u);
-                        std::reverse(cycle.begin(), cycle.end());
-
-                        std::string cycleStr;
-                        for (int vertex : cycle)
-                        {
-                            cycleStr += std::to_string(vertex) + "->";
-                        }
-                        // Remove the trailing "->"
-                        cycleStr.pop_back();
-                        cycleStr.pop_back();
-                        return "Negative cycle found: " + cycleStr;
+                        distance[v] = distance[u] + matrix[u][v];
                     }
                 }
             }
         }
+    }
 
-        return "No negative cycle found.";
+    // Check for negative cycles
+    for (int u = 0; u < numVertices; ++u)
+    {
+        for (int v = 0; v < numVertices; ++v)
+        {
+            if (matrix[u][v] != 0)
+            {
+                if (distance[u] != INT_MAX && distance[u] + matrix[u][v] < distance[v])
+                {
+                    // Found a negative cycle
+                    return "Negative cycle found.";
+                }
+            }
+        }
+    }
+
+    // No negative cycle found
+    return "No negative cycle found.";
 }
 
 
